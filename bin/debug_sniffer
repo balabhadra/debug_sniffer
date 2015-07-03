@@ -1,10 +1,16 @@
 #!/usr/bin/ruby
 
-engine_config = parse_engine_config(ENV['ENGINE_CONFIG'])
-result = DebugSniffer::DebugSniffer.new('/code', engine_config, STDOUT)
+$LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), "../lib")))
 
-STDOUT.print "#{result.to_s}\0"
+require 'json'
+require 'debug_sniffer/debug_sniffer'
 
 def parse_engine_config(raw)
   raw ? JSON.parse(raw) : {}
 end
+
+engine_config = parse_engine_config(ENV['ENGINE_CONFIG'])
+result = DebugSniffer::DebugSniffer.new('/code', engine_config, STDOUT).run
+
+STDOUT.print "#{result.to_s}\0"
+
