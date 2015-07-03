@@ -3,9 +3,10 @@ require 'debug_sniffer/parser'
 
 module DebugSniffer  
   class DebugSniffer
+    
     def initialize(directory, engine_config)
-      @file_finder = FileFinder.new(engine_config)
-      @files = @file_finder.files(directory)
+      file_finder = FileFinder.new(engine_config)
+      @files = file_finder.files(directory)
       @parser = Parser.new(directory)
     end
 
@@ -14,6 +15,7 @@ module DebugSniffer
         @parser.parse(file)
       end
     end
+    
   end
 end
 

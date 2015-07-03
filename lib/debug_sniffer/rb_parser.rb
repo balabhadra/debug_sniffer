@@ -7,7 +7,7 @@ module DebugSniffer
 
     def initialize(file)
       @file = file
-      @terms = %w(binding.pry byebug debugger puts)
+      @terms = %w(binding.pry byebug puts)
     end
 
     def parse

@@ -15,7 +15,7 @@ module DebugSniffer
     end
 
     def parse(file)
-      extension =File.extname(file).gsub('.','')
+      extension = File.extname(file).gsub('.','')
       camelized_parsers = @parser_hash[extension].map { |parser| camelize(parser) }
       camelized_parsers.each do |camelized_parser|
         file_path = File.join(@directory,file)
