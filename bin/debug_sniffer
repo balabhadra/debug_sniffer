@@ -1,0 +1,10 @@
+#!/usr/bin/ruby
+
+engine_config = parse_engine_config(ENV['ENGINE_CONFIG'])
+result = DebugSniffer.new('/code', engine_config, STDOUT)
+
+STDOUT.print "#{result}\0"
+
+def parse_engine_config(raw)
+  raw ? JSON.parse(raw) : {}
+end

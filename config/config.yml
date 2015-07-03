@@ -1,0 +1,15 @@
+debug_sniffer:
+  extensions:
+      rb:
+        parser:
+          - rb_parser
+      js:
+        parser:
+          - js_parser
+      erb:
+        parser:
+           - rb_parser
+           - js_parser
+
+
+

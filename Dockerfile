@@ -13,4 +13,4 @@ USER app
 
 COPY . /usr/src/app
 
-CMD ["/usr/src/app/bin/debug"]
+CMD ["/usr/src/app/bin/debug_sniffer"]
