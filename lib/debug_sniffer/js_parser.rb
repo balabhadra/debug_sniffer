@@ -1,4 +1,5 @@
 require 'debug_sniffer/parser_interface'
+require 'json'
 module DebugSniffer
   class JsParser < ParserInterface
     attr_accessor :file
@@ -9,16 +10,16 @@ module DebugSniffer
     end
 
     def parse
-      issues = []
       File.open(@file).each_with_index do |line, index|
         @terms.each do |term|
           if line =~ /#{term}/
-            issues << {type: "issue", check_name: "Debug codes", description: "Js debug code detected", categories: ["Clarity", "Style"], location: {path: @file, lines: {begin: index, end: index}}, remediation_points: 500}
+            issue = {"type"=> "issue", "check_name" => "Debug codes", "description" => "JS debug code detected", "categories" => ["Clarity", "Style"], "location" => {"path" => @file, "lines" => {"begin"  => index, "end" => index}}, "remediation_points" => 500}
+            STDOUT.print "#{issue.to_json}\0"
             break
           end
         end
       end
-      issues
     end
+    
   end
 end

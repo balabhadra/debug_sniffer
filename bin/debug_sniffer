@@ -10,7 +10,6 @@ def parse_engine_config(raw)
 end
 
 engine_config = parse_engine_config(ENV['ENGINE_CONFIG'])
-result = DebugSniffer::DebugSniffer.new('/code', engine_config, STDOUT).run
+DebugSniffer::DebugSniffer.new('/code', engine_config).run
 
-STDOUT.print "#{result.to_s}\0"
 

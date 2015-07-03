@@ -17,12 +17,10 @@ module DebugSniffer
     def parse(file)
       extension =File.extname(file).gsub('.','')
       camelized_parsers = @parser_hash[extension].map { |parser| camelize(parser) }
-      parser_response = []
       camelized_parsers.each do |camelized_parser|
         file_path = File.join(@directory,file)
-        parser_response << eval(camelized_parser).new(file_path).parse
+        eval(camelized_parser).new(file_path).parse
       end
-      parser_response
     end
 
     private
