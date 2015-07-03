@@ -1,0 +1,3 @@
+#!/usr/bin/ruby
+json = '{"type": "issue","check_name": "Debug codes","description": "Remove the debug code","categories": ["Clarity"],"location": {"path": "path/to/file.css","lines": {"begin": 13,"end": 13}},"remediation_points": 500}'
+STDOUT.print "#{json}\0"
