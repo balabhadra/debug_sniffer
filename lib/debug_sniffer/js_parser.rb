@@ -10,6 +10,7 @@ module DebugSniffer
     include IssueDetector
 
     attr_accessor :file
+    attr_reader :terms
 
     DESCRIPTION = "JS debug code detected"
 
