@@ -1,9 +1,12 @@
 require 'debug_sniffer/file_finder'
 require 'debug_sniffer/parser'
 
-module DebugSniffer  
+module DebugSniffer
   class DebugSniffer
-    
+
+    # @param directory [String] filepath
+    # @param engine_config [hash] excludes the file
+
     def initialize(directory, engine_config)
       file_finder = FileFinder.new(engine_config)
       @files = file_finder.files(directory)
@@ -15,7 +18,7 @@ module DebugSniffer
         @parser.parse(file)
       end
     end
-    
+
   end
 end
 
