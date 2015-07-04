@@ -3,8 +3,11 @@ require 'debug_sniffer/js_parser'
 require 'yaml'
 
 module DebugSniffer
+  # Parser Base class
   class Parser
- 
+
+    # Constructor
+    # @param directory [String] path to files
     def initialize(directory)
       @directory = directory
       @file_config = YAML.load_file("config/config.yml")
@@ -14,6 +17,9 @@ module DebugSniffer
       end
     end
 
+    # Instantiate and Invoke relevant parser methods
+    # @param file [String] filename without path eg. shiva.rb
+    # @return [Boolean]
     def parse(file)
       extension = File.extname(file).gsub('.','')
       camelized_parsers = @parser_hash[extension].map { |parser| camelize(parser) }
@@ -24,7 +30,9 @@ module DebugSniffer
     end
 
     private
-
+    # Get Camelcase Class-name form snake-case string
+    # @param str [String] eg file_parser
+    # @return [String] eg FileParser
     def camelize(str)
       str.split('_').map { |w| w.capitalize }.join
     end
