@@ -1,15 +1,22 @@
 #!/usr/bin/ruby
 
+# Load the ./lib directory to Ruby's $LOAD_PATH array
 $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), "../lib")))
 
 require 'json'
 require 'debug_sniffer/debug_sniffer'
 
+# Parse CodeClimate configuration in String-JSON to Hash
+# @param raw [String- JSON] config in JSON format
+# @return [Hash]
 def parse_engine_config(raw)
   raw ? JSON.parse(raw) : {}
 end
 
 engine_config = parse_engine_config(ENV['ENGINE_CONFIG'])
+
+# Run the instance of DebugSniffer
+#   `/code` is the default path where code to be parsed is mounted
 DebugSniffer::DebugSniffer.new('/code', engine_config).run
 
 

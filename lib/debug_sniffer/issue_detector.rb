@@ -1,6 +1,11 @@
 module DebugSniffer
+  # Parse files set in the instance variable @file
+  #   and detects the issue in the files
+  #   Checks the issue domain and parser type from the dictionary ( config/config.yml)
   module IssueDetector
-    
+    # Detects the issues in the relavant files
+    # @param description [String] issue description
+    # @return [Boolean]
     def detect_issue(description)
       File.open(@file).each.with_index(1) do |line, index|
         @terms.each do |term|
@@ -12,6 +17,6 @@ module DebugSniffer
         end
       end
     end
-     
+
   end
 end
