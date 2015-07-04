@@ -6,10 +6,10 @@ debug_sniffer:
       js:
         parser:
           - js_parser
-      erb:
-        parser:
-           - rb_parser
-           - js_parser
+      # erb:
+      #   parser:
+      #      - rb_parser
+      #      - js_parser
 
 
 

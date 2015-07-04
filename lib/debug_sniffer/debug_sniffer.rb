@@ -7,15 +7,20 @@ module DebugSniffer
     # @param directory [String] filepath
     # @param engine_config [hash] excludes the file
 
+    attr_accessor :directory, :engine_config
+    
     def initialize(directory, engine_config)
-      file_finder = FileFinder.new(engine_config)
-      @files = file_finder.files(directory)
-      @parser = Parser.new(directory)
+      @directory = directory || '/code'
+      @engine_config = engine_config
     end
 
     def run
-      @files.each do |file|
-        @parser.parse(file)
+      file_finder = FileFinder.new(@engine_config)
+      files = file_finder.files(@directory)
+      parser = Parser.new(@directory)
+      
+      files.each do |file|
+        parser.parse(file)
       end
     end
 
